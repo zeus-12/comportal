@@ -46,7 +46,9 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         sx={{ flex: 1 }}
         {...form.getInputProps(`links.${index}.link`)}
       />
-      <Button onClick={() => form.removeListItem("links", index)}>
+      <Button onClick={() => form.removeListItem("links", index)}
+      variant ="outline"
+      color="red">
         <RiDeleteBin6Line />
       </Button>
     </Group>
@@ -111,6 +113,8 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
               <Group position="center" mt="md">
                 <Button
                   onClick={() => form.insertListItem("links", { link: "" })}
+                  variant ="outline"
+                  
                 >
                   Add Link
                 </Button>

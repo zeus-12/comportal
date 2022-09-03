@@ -14,15 +14,19 @@ const User = ({ session, complaints }) => {
   // const name = session.user.name;
   console.log(complaints);
   return (
-    <div>
-      <div className="flex justify-between mt-24">
-        <p>Hey, {session.user.name}</p>
-        <Button className="" onClick={signOut}>
+    <>
+      <div className="flex justify-between mt-24 px-4">
+        <div className="flex ">
+          <p className="text-3xl mb-10 mr-4">Hey,</p>
+          <p className="text-3xl">{session.user.name}</p>
+        </div>
+        <Button className="" onClick={signOut}
+         variant="outline">
           Sign Out
         </Button>
       </div>
       <ComplaintGrid complaints={complaints} />
-    </div>
+    </>
   );
 };
 
