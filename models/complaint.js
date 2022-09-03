@@ -6,11 +6,11 @@ const complaintSchema = new Schema({
     type: String,
     required: true,
   },
-  phoneNum: {
+  phoneNumber: {
     type: Number,
     required: true,
   },
-  // use enum for cateogry todo
+  // use enum for cateogry
   category: {
     type: String,
     required: true,

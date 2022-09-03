@@ -3,11 +3,6 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
-const LinkItems = [
-  { link: "/", name: "Complaints" },
-  { link: "/new", name: "New Complaint" },
-];
-
 const LinkComponent = ({ link, name }) => (
   <Link href={link} passHref>
     <p className="px-2 py-1 text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
@@ -16,11 +11,13 @@ const LinkComponent = ({ link, name }) => (
   </Link>
 );
 
-const LinkElements = ({ session }) => (
+const LinkElements = ({ setNewRequest, session }) => (
   <>
-    {LinkItems.map((item, i) => (
-      <LinkComponent key={i} link={item.link} name={item.name} />
-    ))}
+    <LinkComponent link="/" name="Complaints" />
+
+    <div onClick={() => setNewRequest(true)}>
+      <LinkComponent link="" name="New Request" />
+    </div>
 
     {/* todo add logout*/}
     {session && (
@@ -46,7 +43,7 @@ const Logo = ({ setOpened }) => (
   </Link>
 );
 
-const NavbarDrawer = ({ opened, setOpened, session }) => (
+const NavbarDrawer = ({ setNewRequest, opened, setOpened, session }) => (
   <Drawer
     className="pt-4 px-2 bg-black"
     onClick={() => setOpened(false)}
@@ -60,12 +57,12 @@ const NavbarDrawer = ({ opened, setOpened, session }) => (
     zIndex={20}
   >
     <div className="text-2xl pt-16 space-y-4">
-      <LinkElements session={session} />
+      <LinkElements setNewRequest={setNewRequest} session={session} />
     </div>
   </Drawer>
 );
 
-export default function Navbar() {
+export default function Navbar({ setNewRequest }) {
   const { data: session } = useSession();
   //for the burger & drawer
   const [opened, setOpened] = useState(false);
@@ -97,13 +94,18 @@ export default function Navbar() {
         )}
         {!opened && (
           <div className="text-gray-300 text-lg font-medium hidden xl:gap-8 sm:flex gap-8">
-            <LinkElements session={session} />
+            <LinkElements setNewRequest={setNewRequest} session={session} />
           </div>
         )}
       </div>
 
       <div className="absolute top-10">
-        <NavbarDrawer session={session} setOpened={setOpened} opened={opened} />
+        <NavbarDrawer
+          setNewRequest={setNewRequest}
+          session={session}
+          setOpened={setOpened}
+          opened={opened}
+        />
       </div>
     </div>
   );

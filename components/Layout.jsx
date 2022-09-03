@@ -1,14 +1,15 @@
 import Navbar from "./Navbar";
-// import ComplaintBOx from './ComplaintBox'
-import ViewCard from "./ViewCard"
+import ComplaintBox from "./ComplaintBox";
+import ViewCard from "./ViewCard";
+import { useState } from "react";
 const Layout = ({ children }) => {
+  const [newRequest, setNewRequest] = useState(false);
+
   return (
     <div>
-      <Navbar />
-      <ViewCard/>
-      {/* <ComplaintBOx/> */}
-
-      {children}
+      <Navbar setNewRequest={setNewRequest} />
+      <ViewCard />
+      <ComplaintBox newRequest={newRequest} setNewRequest={setNewRequest} />
 
       <div className="mt-10">{children}</div>
     </div>

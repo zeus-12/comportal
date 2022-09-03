@@ -1,154 +1,128 @@
-import { useState } from 'react';
-import { TextInput, Button, Select,Textarea} from "@mantine/core";
-import { useForm } from '@mantine/form';
-import { Modal, Group } from '@mantine/core';
+import { TextInput, Button, Select, Textarea } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { Modal, Group } from "@mantine/core";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useSession } from "next-auth/react";
 
-export default function Demo() {
-  const [opened, setOpened] = useState(true);
-  const data = ['Health & Hygiene', 'Technical issues','Sports','Others']
+export default function ComplaintBox({ setNewRequest, newRequest }) {
+  const { data: session } = useSession();
+  const name = session?.user?.name;
+  const email = session?.user?.email;
+
+  const data = ["Health & Hygiene", "Technical issues", "Sports", "Others"];
   const form = useForm({
     initialValues: {
-      name:"",
-      num:"",
-      category:"",
-      desc:"",
-      title:"",
-      rel : [{link:''}]
+      phoneNumber: "",
+      category: "",
+      desc: "",
+      title: "",
+      rel: [{ link: "" }],
     },
   });
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log("hi");
+    await fetch("/api/complaints/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form.values),
+    });
+  };
+
   const fields = form.values.rel.map((item, index) => (
-    <Group key={item.key} mt="xs">
+    <Group key={index} mt="xs">
       <TextInput
         placeholder="Link"
         withAsterisk
         sx={{ flex: 1 }}
         {...form.getInputProps(`rel.${index}.link`)}
-        classNames={{
-          input:"bg-[#d6d3d1] text-black"
-        }}
       />
-      <Button onClick={() => form.removeListItem('rel', index)}
-      classNames={{
-        root: "bg-[#1da1f2]",
-      }}>
-        Delete
+      <Button onClick={() => form.removeListItem("rel", index)}>
+        <RiDeleteBin6Line />
       </Button>
     </Group>
   ));
+
   return (
     <>
       <Modal
-        opened= {opened}
-        onClose={() => setOpened(false)}
+        opened={newRequest}
+        onClose={() => setNewRequest(false)}
         title="Register Your Complaint"
         classNames={{
-          title: "text-2xl font-semibold text-black ",
-          modal:"bg-white",
-          close: "bg-black"
+          title: "text-2xl font-semibold ",
         }}
         centered
       >
         {
-            
-            <div className="">      
-              <form className="flex flex-col">
-                <TextInput
-                  placeholder="Name"
-                  label="Name"
-                  variant="filled"
-                  size="md"
-                  classNames={{
-                    label: "text-black ",
-                    input:"bg-[#d6d3d1] text-black"
-                  }}
-                  {...form.getInputProps('name')}
-                  
-                />
-                <TextInput
-                  placeholder="Phone Number"
-                  label="Phone Number"
-                  variant="filled"
-                  size="md"
-                  classNames={{
-                    label: "text-black ",
-                    input:"bg-[#d6d3d1] text-black"
-                  }}
-                  {...form.getInputProps('num')}
-                />
-                
-                <Select
-                  label="Category"
-                  placeholder="Pick One"
-                  variant="filled"
-                  size="md"
-                  classNames={{
-                    label: "text-black ",
-                    input:"bg-[#d6d3d1] text-black"
-                  }}
-                  {...form.getInputProps('category')}
-                  
-                  data={data}
+          <div className="">
+            <form onSubmit={submitHandler} className="flex flex-col">
+              {/* <p>Name: {name}</p>
+              <p>Email: {email}</p> */}
+              <TextInput
+                required={true}
+                placeholder="Phone Number"
+                label="Phone Number"
+                variant="filled"
+                size="md"
+                {...form.getInputProps("num")}
+              />
 
-                />
-                <TextInput
-                  placeholder="eg:Monkey issue"
-                  label="Title"
-                  variant="filled"
-                  size="md"
-                  classNames={{
-                    label: "text-black ",
-                    input:"bg-[#d6d3d1] text-black"
-                  }}
-                  {...form.getInputProps('title')}
-                />
-                <Textarea
-                  placeholder="Please elaborate on your complaint"
-                  label="Description"
-                  variant="filled"
-                  size="md"
-                  classNames={{
-                    label: "text-black ",
-                    input:"bg-[#d6d3d1] text-black"
-                  }}
-                  {...form.getInputProps('desc')}
-                />
-                <p className='text-black font-medium'>Add relevent links for your complaint</p>
-          
-                        
-                          {fields}
-                          <Group position="center" mt="md">
-                            <Button
-                              onClick={() =>
-                                form.insertListItem('rel', { link: ''})
-                              }
-                              classNames={{
-                                root: "bg-[#1da1f2]",
-                              }}
-                            >
-                              Add Link
-                            </Button>
-                          </Group>
+              <Select
+                label="Category"
+                placeholder="Pick One"
+                variant="filled"
+                size="md"
+                {...form.getInputProps("category")}
+                data={data}
+              />
+              <TextInput
+                required={true}
+                placeholder="eg:Monkey issue"
+                label="Title"
+                variant="filled"
+                size="md"
+                {...form.getInputProps("title")}
+              />
+              <Textarea
+                required={true}
+                placeholder="Please elaborate on your complaint"
+                label="Description"
+                variant="filled"
+                size="md"
+                {...form.getInputProps("desc")}
+              />
+              <p className="font-medium">
+                Add relevent links for your complaint
+              </p>
 
-                          
+              {fields}
+              <Group position="center" mt="md">
                 <Button
-                  
-                  variant="filled"
-                  centered
-                  size="md"
-                  
-                  classNames={{
-                    root: "bg-[#1da1f2] mt-2 w-[]",
-                  }}
-                  
+                  onClick={() => form.insertListItem("rel", { link: "" })}
                 >
-                  Submit
+                  Add Link
                 </Button>
-              </form>
-            </div>
-          
+              </Group>
+
+              <Button
+                type="submit"
+                variant="filled"
+                centered
+                size="md"
+                classNames={{
+                  root: "bg-[#1da1f2] mt-2 w-[]",
+                }}
+              >
+                Submit
+              </Button>
+            </form>
+          </div>
         }
       </Modal>
     </>
   );
 }
-

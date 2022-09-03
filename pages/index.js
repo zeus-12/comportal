@@ -60,10 +60,10 @@ export default function Home({ complaints }) {
       >
         {comptype.map((a, id) => {
           return (
-            <Grid.Col key={id} xs={8} sm={7} md={6} lg={4}>
+            <Grid.Col key={id} sm={9} md={6} lg={4}>
               <Link href={`/complaints/${a.href}`}>
                 <Card
-                  className="comptype"
+                  className="comptype hover:cursor-pointer"
                   shadow="sm"
                   p="lg"
                   radius="md"

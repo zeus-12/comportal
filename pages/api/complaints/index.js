@@ -13,6 +13,9 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(400).json({ success: false });
     }
+  } else if (method == "POST") {
+    console.log(req.body);
+    const newComplaint = await Complaint.create(req.body);
   }
 
   // const complaints = await db.collection("complaints").find({});

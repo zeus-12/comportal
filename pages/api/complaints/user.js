@@ -1,16 +1,18 @@
 import dbConnect from "../../../utils/dbConnect";
 import Complaint from "../../../models/complaint";
-import { getSession } from "next-auth/react";
+import { authOptions } from "../auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth";
 
 export default async function handler(req, res) {
   //   const { email } = session.user;
+
   const email = "elonmask2806@gmail.com";
 
-  console.log(req);
   await dbConnect();
   if (req.method === "GET") {
-    const session = await getSession({ req });
-    // console.log(session);
+    const session = await unstable_getServerSession(req, res, authOptions);
+
+    console.log("hi", session);
     if (!session) {
       res.status(400).json({ success: false });
       return;
