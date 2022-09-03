@@ -15,7 +15,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
   const name = session?.user?.name;
   const email = session?.user?.email;
 
-  const data = ["Health & Hygiene", "Technical issues", "Sports", "Others"];
+  const data = ["Health & Hygiene", "Electricity", "Plumbing","Staff","Others"];
   const form = useForm({
     initialValues: {
       phoneNumber: "",
@@ -67,8 +67,10 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         {
           <div className="">
             <form onSubmit={submitHandler} className="flex flex-col">
-              <p>Name: {name}</p>
-              <p>Email: {email}</p>
+              <div className="mb-2">
+                  <p>{name}</p>
+                  <p>{email}</p>
+              </div>
               <NumberInput
                 required={true}
                 placeholder="Phone Number"
@@ -88,7 +90,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
               />
               <TextInput
                 required={true}
-                placeholder="eg:Monkey issue"
+                placeholder="eg:Leakage in Kitchen"
                 label="Title"
                 variant="filled"
                 size="md"
