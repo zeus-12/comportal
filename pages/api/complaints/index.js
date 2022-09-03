@@ -16,6 +16,7 @@ export default async function handler(req, res) {
   } else if (method == "POST") {
     console.log(req.body);
     const newComplaint = await Complaint.create(req.body);
+    console.log(newComplaint);
   }
 
   // const complaints = await db.collection("complaints").find({});

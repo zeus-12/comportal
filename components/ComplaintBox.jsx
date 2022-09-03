@@ -1,4 +1,10 @@
-import { TextInput, Button, Select, Textarea } from "@mantine/core";
+import {
+  TextInput,
+  Button,
+  Select,
+  Textarea,
+  NumberInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { Modal, Group } from "@mantine/core";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -14,7 +20,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
     initialValues: {
       phoneNumber: "",
       category: "",
-      desc: "",
+      description: "",
       title: "",
       rel: [{ link: "" }],
     },
@@ -23,12 +29,13 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log("hi");
+    console.log({ ...form.values, name, email });
     await fetch("/api/complaints/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(form.values),
+      body: JSON.stringify({ ...form.values, name, email }),
     });
   };
 
@@ -60,15 +67,15 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         {
           <div className="">
             <form onSubmit={submitHandler} className="flex flex-col">
-              {/* <p>Name: {name}</p>
-              <p>Email: {email}</p> */}
-              <TextInput
+              <p>Name: {name}</p>
+              <p>Email: {email}</p>
+              <NumberInput
                 required={true}
                 placeholder="Phone Number"
                 label="Phone Number"
                 variant="filled"
                 size="md"
-                {...form.getInputProps("num")}
+                {...form.getInputProps("phoneNumber")}
               />
 
               <Select
@@ -93,7 +100,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
                 label="Description"
                 variant="filled"
                 size="md"
-                {...form.getInputProps("desc")}
+                {...form.getInputProps("description")}
               />
               <p className="font-medium">
                 Add relevent links for your complaint
