@@ -1,11 +1,9 @@
 import dbConnect from "../../../utils/dbConnect";
 import Complaint from "../../../models/complaint";
-import { useRouter } from "next/router";
 import { allowedCategories } from "../../../utils/helper";
 
 export default async function handler(req, res) {
-  const router = useRouter();
-  const { category } = router.query;
+  console.log(req.params);
 
   if (!allowedCategories.includes(category)) {
     res.status(400).json({ success: false });

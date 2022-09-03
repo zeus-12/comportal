@@ -9,20 +9,20 @@ import { useForm } from "@mantine/form";
 import { Modal, Group } from "@mantine/core";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSession } from "next-auth/react";
+import { categoryData } from "../utils/helper";
 
 export default function ComplaintBox({ setNewRequest, newRequest }) {
   const { data: session } = useSession();
   const name = session?.user?.name;
   const email = session?.user?.email;
 
-  const data = ["Health & Hygiene", "Electricity", "Plumbing","Staff","Others"];
   const form = useForm({
     initialValues: {
       phoneNumber: "",
       category: "",
       description: "",
       title: "",
-      rel: [{ link: "" }],
+      links: [{ link: "" }],
     },
   });
 
@@ -30,7 +30,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
     e.preventDefault();
     console.log("hi");
     console.log({ ...form.values, name, email });
-    await fetch("/api/complaints/", {
+    await fetch(`/api/complaints/${form.values.category}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,15 +39,15 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
     });
   };
 
-  const fields = form.values.rel.map((item, index) => (
+  const fields = form.values.links.map((item, index) => (
     <Group key={index} mt="xs">
       <TextInput
         placeholder="Link"
         withAsterisk
         sx={{ flex: 1 }}
-        {...form.getInputProps(`rel.${index}.link`)}
+        {...form.getInputProps(`links.${index}.link`)}
       />
-      <Button onClick={() => form.removeListItem("rel", index)}>
+      <Button onClick={() => form.removeListItem("links", index)}>
         <RiDeleteBin6Line />
       </Button>
     </Group>
@@ -68,8 +68,8 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
           <div className="">
             <form onSubmit={submitHandler} className="flex flex-col">
               <div className="mb-2">
-                  <p>{name}</p>
-                  <p>{email}</p>
+                <p>{name}</p>
+                <p>{email}</p>
               </div>
               <NumberInput
                 required={true}
@@ -86,7 +86,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
                 variant="filled"
                 size="md"
                 {...form.getInputProps("category")}
-                data={data}
+                data={categoryData}
               />
               <TextInput
                 required={true}
@@ -111,7 +111,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
               {fields}
               <Group position="center" mt="md">
                 <Button
-                  onClick={() => form.insertListItem("rel", { link: "" })}
+                  onClick={() => form.insertListItem("links", { link: "" })}
                 >
                   Add Link
                 </Button>

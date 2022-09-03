@@ -1,6 +1,4 @@
-import { useState } from "react";
-import Router, { useRouter } from "next/router";
-import { Button, Card, Text, Grid, Pagination } from "@mantine/core";
+import { Button, Card, Grid } from "@mantine/core";
 import Link from "next/link";
 import { allowedCategories, toTitleCase } from "../../utils/helper";
 // const complaints = [
@@ -73,12 +71,6 @@ const FilteredPage = ({ category, complaints }) => {
               );
             })}
         </Grid>
-        {/* <Pagination
-          style={{ margin: "5vmin 0" }}
-          total={10}
-          color="gray"
-          radius="md"
-        /> */}
       </div>
     </div>
   );

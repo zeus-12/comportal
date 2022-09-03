@@ -6,14 +6,14 @@ const comptype = [
   {
     href: "health_hygiene",
     title: "Health and Hygiene",
-    imageurl:"/health.jpg",
+    imageurl: "/health.jpg",
   },
   {
     href: "staff",
     title: "Staff",
     imageurl: "/staff.jpg",
   },
-  
+
   {
     href: "electrical",
     title: "Electrical",
@@ -45,7 +45,7 @@ export default function Home({ complaints }) {
       </Head>
 
       <div className="p-8">
-        <p className="font-semibold text-3xl">Complaint Portal</p>
+        <p className="font-semibold text-3xl">Complaints</p>
       </div>
 
       <Grid
@@ -55,7 +55,7 @@ export default function Home({ complaints }) {
       >
         {comptype.map((a, id) => {
           return (
-            <Grid.Col key={id} sm={9} md={6} lg={4}>
+            <Grid.Col key={id} sm={9} md={5} lg={5} xl={4}>
               <Link href={`/complaints/${a.href}`}>
                 <Card
                   className="comptype hover:cursor-pointer"

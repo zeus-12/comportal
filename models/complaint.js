@@ -21,7 +21,6 @@ const complaintSchema = new Schema({
   },
   links: {
     type: Array,
-    required: true,
   },
   title: {
     type: String,
