@@ -10,6 +10,7 @@ const Layout = ({ children }) => {
 
       {children}
 
+      <div className="mt-10">{children}</div>
     </div>
   );
 };
