@@ -1,11 +1,21 @@
 import { Button, Card, Grid } from "@mantine/core";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import ComplaintGrid from "../../components/ComplaintGrid";
+import ComplaintModal from "../../components/ComplaintModal";
 import { allowedCategories, toTitleCase } from "../../utils/helper";
 
 const server_url = "http://localhost:3000";
 
 const FilteredPage = ({ category, complaints }) => {
+  const [cur, setCur] = useState({});
+  console.log(cur);
+
+  useEffect(() => {
+    if (cur) {
+    }
+  }, [cur]);
+
   return (
     <div className="mt-20">
       <p className="ml-20 text-3xl font-semibold mb-2">
@@ -18,7 +28,8 @@ const FilteredPage = ({ category, complaints }) => {
           alignItems: "center",
         }}
       >
-        <ComplaintGrid complaints={complaints} />
+        <ComplaintGrid setCur={setCur} complaints={complaints} />
+        <ComplaintModal setCur={setCur} cur={cur} />
       </div>
     </div>
   );
