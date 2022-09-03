@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Modal} from "@mantine/core";
+import { Modal } from "@mantine/core";
 
-const RequestModal = () => {
+const ComplaintModal = () => {
   const [opened, setOpened] = useState(false);
   return (
     <Modal
@@ -39,4 +39,4 @@ const RequestModal = () => {
   );
 };
 
-export default RequestModal;
+export default ComplaintModal;
