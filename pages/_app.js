@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/index.css";
 import Layout from "../components/Layout";
 import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from "@mantine/core";
