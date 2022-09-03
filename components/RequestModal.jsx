@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Modal, Button, Group } from "@mantine/core";
+import { Modal} from "@mantine/core";
 
-const ViewCard = () => {
+const RequestModal = () => {
   const [opened, setOpened] = useState(false);
   return (
     <Modal
@@ -39,4 +39,4 @@ const ViewCard = () => {
   );
 };
 
-export default ViewCard;
+export default RequestModal;
