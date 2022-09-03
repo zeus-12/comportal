@@ -5,34 +5,30 @@ import Link from "next/link";
 const comptype = [
   {
     href: "health_hygiene",
-    title: "Hygiene",
+    title: "Health and Hygiene",
     imageurl:
       "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
   },
   {
-    href: "",
-    title: "Sports",
-    imageurl: "",
-  },
-  {
-    href: "",
+    href: "staff",
     title: "Staff",
-    imageurl: "",
+    imageurl: "/staff.jpg",
   },
+  
   {
-    href: "",
-    title: "Common Rooms",
-    imageurl: "",
-  },
-  {
-    href: "",
+    href: "electrical",
     title: "Electrical",
-    imageurl: "",
+    imageurl: "/electrical.jpg",
   },
   {
-    href: "",
+    href: "plumbing",
     title: "Plumbing",
-    imageurl: "",
+    imageurl: "/plumbing",
+  },
+  {
+    href: "others",
+    title: "Others",
+    imageurl: "/others.jpg",
   },
 ];
 const server_url = "http://localhost:3000";
