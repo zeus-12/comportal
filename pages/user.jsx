@@ -22,16 +22,16 @@ const User = ({ session, complaints }) => {
   return (
     <>
       <div className="flex justify-between mt-24 px-4">
-        <div className="flex ">
-          <p className="text-3xl mb-10 mr-4">Hey,</p>
-          <p className="text-3xl">{session.user.name}</p>
+        <div className="flex text-3xl">
+          <p className="mb-10">Hey,</p>
+          <p className="">{session.user.name}</p>
         </div>
         <Button className="" onClick={signOut} variant="outline">
           Sign Out
         </Button>
       </div>
       <ComplaintGrid setCur={setCur} complaints={complaints} />
-      <ComplaintModal />
+      <ComplaintModal setCur={setCur} cur={cur} />
     </>
   );
 };
