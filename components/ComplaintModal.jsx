@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Modal } from "@mantine/core";
 
-const ComplaintModal = () => {
-  const [opened, setOpened] = useState(false);
+const ComplaintModal = ({ cur }) => {
   return (
     <Modal
-      opened={opened}
+      opened={!!cur}
       onClose={() => setOpened(false)}
       title="Title"
       classNames={{
@@ -13,10 +12,10 @@ const ComplaintModal = () => {
       }}
       centered
     >
-      {
+      {cur && (
         <div>
           <div className="flex justify-between mb-2 ">
-            <h2 className="text-lg">Description</h2>
+            <h2 className="text-lg">{cur.description}</h2>
           </div>
           <p className="text-[#78716c]">
             The most intense geomagnetic storm in recorded history peaked
@@ -34,7 +33,7 @@ const ComplaintModal = () => {
             </div>
           </div>
         </div>
-      }
+      )}
     </Modal>
   );
 };
