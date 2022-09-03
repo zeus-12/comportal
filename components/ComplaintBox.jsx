@@ -10,8 +10,10 @@ import { Modal, Group } from "@mantine/core";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSession } from "next-auth/react";
 import { categoryData } from "../utils/helper";
+import { useState } from "react";
 
 export default function ComplaintBox({ setNewRequest, newRequest }) {
+  const [load, setLoad] = useState(false);
   const { data: session } = useSession();
   const name = session?.user?.name;
   const email = session?.user?.email;
@@ -28,14 +30,17 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log({ ...form.values, name, email });
-    await fetch(`/api/complaints/${form.values.category}`, {
+    setLoad(true);
+    const res = await fetch(`/api/complaints/${form.values.category}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...form.values, name, email }),
     });
+
+    console.log(res);
+    setLoad(false);
   };
 
   const fields = form.values.links.map((item, index) => (
@@ -46,9 +51,11 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         sx={{ flex: 1 }}
         {...form.getInputProps(`links.${index}.link`)}
       />
-      <Button onClick={() => form.removeListItem("links", index)}
-      variant ="outline"
-      color="red">
+      <Button
+        onClick={() => form.removeListItem("links", index)}
+        variant="outline"
+        color="red"
+      >
         <RiDeleteBin6Line />
       </Button>
     </Group>
@@ -113,8 +120,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
               <Group position="center" mt="md">
                 <Button
                   onClick={() => form.insertListItem("links", { link: "" })}
-                  variant ="outline"
-                  
+                  variant="outline"
                 >
                   Add Link
                 </Button>

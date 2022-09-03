@@ -4,7 +4,6 @@ import Link from "next/link";
 import { categoryWithTitleUrl } from "../utils/helper";
 
 export default function Home({ complaints }) {
-  console.log(complaints);
   return (
     <div className="">
       <Head>

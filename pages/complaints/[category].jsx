@@ -59,10 +59,6 @@ export const getServerSideProps = async (context) => {
       notFound: true,
     };
   }
-
-  return {
-    props: null,
-  };
 };
 
 export default FilteredPage;

@@ -12,7 +12,6 @@ const server_url = "http://localhost:3000";
 
 const User = ({ session, complaints }) => {
   const [cur, setCur] = useState({});
-  console.log(cur);
 
   useEffect(() => {
     if (cur) {
@@ -26,7 +25,11 @@ const User = ({ session, complaints }) => {
           <p className="mb-10">Hey,</p>
           <p className="">{session.user.name}</p>
         </div>
-        <Button className="" onClick={signOut} variant="outline">
+        <Button
+          className="hover:bg-[#1da1f2] hover:text-white border-[#1da1f2]"
+          onClick={signOut}
+          variant="outline"
+        >
           Sign Out
         </Button>
       </div>
@@ -58,7 +61,6 @@ export const getServerSideProps = async (context) => {
   try {
     const data = await Complaint.find({ email });
 
-    console.log(data);
     return {
       props: {
         session,
@@ -73,27 +75,5 @@ export const getServerSideProps = async (context) => {
     };
   }
 };
-// try {
-//   const res = await fetch(server_url + "/api/complaints/user");
-
-//   const data = await res.JSON();
-//   return {
-//     props: {
-//       // complaints: data.data,
-//       session: session,
-//       complaints: JSON.parse(JSON.stringify(data.data)),
-//     },
-//   };
-// } catch (error) {
-//   console.log(error);
-//   return {
-//     props: {
-//       notFound: null,
-//     },
-//   };
-//   // return {
-//   //   notFound: true,
-//   // };
-// }
 
 export default User;

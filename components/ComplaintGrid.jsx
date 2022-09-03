@@ -32,16 +32,16 @@ export const ComplaintCard = ({ item, setCur }) => {
   return (
     <Card
       onClick={() => setCur(item)}
-      className="comptype hover:cursor-pointer"
+      className="comptype hover:cursor-pointer h-32"
       shadow="sm"
-      p="xl"
-      style={{ padding: "2vmin", aspectRatio: " 2 / 1" }}
+      radius="md"
+      withBorder
     >
       <div className="flex justify-between">
         <p className="text-2xl font-semibold">{item.title}</p>
         <p className="text-gray-400">27/11/2001</p>
       </div>
-      <p>{item.description}</p>
+      <p className="overflow-ellipsis break-words">{item.description}</p>
     </Card>
   );
 };

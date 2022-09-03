@@ -15,9 +15,12 @@ const LinkElements = ({ setNewRequest, session }) => (
   <>
     <LinkComponent link="/" name="Complaints" />
 
-    <div onClick={() => setNewRequest(true)}>
-      <LinkComponent link="" name="New Request" />
-    </div>
+    <p
+      onClick={() => setNewRequest(true)}
+      className="px-2 py-1 text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900"
+    >
+      New Request
+    </p>
 
     {/* todo add logout*/}
     {session && (
@@ -36,7 +39,7 @@ const Logo = ({ setOpened }) => (
       onClick={() => setOpened(false)}
       className="flex items-center hover:cursor-pointer"
     >
-      <p className="text-lg">
+      <p className="text-3xl">
         Com<span className="text-blue-400">portal</span>
       </p>
     </div>

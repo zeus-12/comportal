@@ -37,8 +37,8 @@ export const categoryWithTitleUrl = [
     imageurl: "/plumbing.jpeg",
   },
   {
-    href: "others",
-    title: "Others",
+    href: "other",
+    title: "Other",
     imageurl: "/others.jpeg",
   },
 ];
