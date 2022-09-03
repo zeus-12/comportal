@@ -1,21 +1,23 @@
 import "../styles/globals.css";
 import Layout from "../components/Layout";
+import { SessionProvider } from "next-auth/react";
 import { MantineProvider } from "@mantine/core";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, session, pageProps }) {
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{
-        /** Put your mantine theme override here */
-        colorScheme: "dark",
-      }}
-    >
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </MantineProvider>
+    <SessionProvider session={session}>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          colorScheme: "dark",
+        }}
+      >
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MantineProvider>
+    </SessionProvider>
   );
 }
 
