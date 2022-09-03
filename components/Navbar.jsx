@@ -33,9 +33,8 @@ const Logo = ({ setOpened }) => (
       onClick={() => setOpened(false)}
       className="flex items-center hover:cursor-pointer"
     >
-      <p className="text-3xl font-bold">
-        <span className="text-gray-400">&#x0007B;</span>V
-        <span className="text-gray-400">&#x0007D;</span>
+      <p>
+        Com<span className="text-blue-400">portal</span>
       </p>
     </div>
   </Link>
