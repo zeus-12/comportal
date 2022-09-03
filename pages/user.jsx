@@ -5,14 +5,20 @@ import { Button } from "@mantine/core";
 import dbConnect from "../utils/dbConnect";
 import Complaint from "../models/complaint";
 import ComplaintGrid from "../components/ComplaintGrid";
+import { useEffect, useState } from "react";
+import ComplaintModal from "../components/ComplaintModal";
 
-// -------------------
-// TODO FIX "HEY NAME"
 const server_url = "http://localhost:3000";
 
 const User = ({ session, complaints }) => {
-  // const name = session.user.name;
-  console.log(complaints);
+  const [cur, setCur] = useState({});
+  console.log(cur);
+
+  useEffect(() => {
+    if (cur) {
+    }
+  }, [cur]);
+
   return (
     <>
       <div className="flex justify-between mt-24 px-4">
@@ -20,12 +26,12 @@ const User = ({ session, complaints }) => {
           <p className="text-3xl mb-10 mr-4">Hey,</p>
           <p className="text-3xl">{session.user.name}</p>
         </div>
-        <Button className="" onClick={signOut}
-         variant="outline">
+        <Button className="" onClick={signOut} variant="outline">
           Sign Out
         </Button>
       </div>
-      <ComplaintGrid complaints={complaints} />
+      <ComplaintGrid setCur={setCur} complaints={complaints} />
+      <ComplaintModal />
     </>
   );
 };
