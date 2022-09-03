@@ -41,9 +41,9 @@ export const getServerSideProps = async (context) => {
     const data = await res.json();
     return {
       props: {
-        complaints: data.data,
-        session: session,
-        // complaints: JSON.parse(JSON.stringify(data.data)),
+        // complaints: data.data,
+        // session: session,
+        complaints: JSON.parse(JSON.stringify(data.data)),
       },
     };
   } catch (error) {
