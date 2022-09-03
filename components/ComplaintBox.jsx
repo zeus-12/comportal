@@ -28,7 +28,6 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("hi");
     console.log({ ...form.values, name, email });
     await fetch(`/api/complaints/${form.values.category}`, {
       method: "POST",

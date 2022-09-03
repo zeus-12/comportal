@@ -3,7 +3,9 @@ import Complaint from "../../../models/complaint";
 import { allowedCategories } from "../../../utils/helper";
 
 export default async function handler(req, res) {
-  console.log(req.params);
+  console.log(req);
+
+  const category = req.query.category;
 
   if (!allowedCategories.includes(category)) {
     res.status(400).json({ success: false });
@@ -14,11 +16,13 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const complaints = await Complaint.find({ category });
-      res.status(200).json({ success: true, data: complaints });
+      res
+        .status(200)
+        .json({ success: true, data: JSON.parse(JSON.stringify(complaints)) });
     } catch (error) {
       res.status(400).json({ success: false });
     }
-  } else if (method == "POST") {
+  } else if (req.method == "POST") {
     console.log(req.body);
     const newComplaint = await Complaint.create(req.body);
     console.log(newComplaint);

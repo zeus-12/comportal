@@ -1,36 +1,8 @@
 import { Card, Image, Text, Grid } from "@mantine/core";
 import Head from "next/head";
 import Link from "next/link";
+import { categoryWithTitleUrl } from "../utils/helper";
 
-const comptype = [
-  {
-    href: "health_hygiene",
-    title: "Health and Hygiene",
-    imageurl: "/health.jpg",
-  },
-  {
-    href: "staff",
-    title: "Staff",
-    imageurl: "/staff.jpg",
-  },
-
-  {
-    href: "electrical",
-    title: "Electrical",
-    imageurl: "/electrical.jpg",
-  },
-  {
-    href: "plumbing",
-    title: "Plumbing",
-    imageurl: "/plumbing.jpeg",
-  },
-  {
-    href: "others",
-    title: "Others",
-    imageurl: "/others.jpeg",
-  },
-];
-const server_url = "http://localhost:3000";
 export default function Home({ complaints }) {
   console.log(complaints);
   return (
@@ -53,7 +25,7 @@ export default function Home({ complaints }) {
         gutter={20}
         justify="center"
       >
-        {comptype.map((a, id) => {
+        {categoryWithTitleUrl.map((a, id) => {
           return (
             <Grid.Col key={id} sm={9} md={5} lg={5} xl={4}>
               <Link href={`/complaints/${a.href}`}>

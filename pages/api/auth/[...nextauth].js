@@ -13,12 +13,6 @@ export const authOptions = {
 
 export default NextAuth(authOptions);
 
-// callbacks: {
-//   async jwt({ token }) {
-//     token.userRole = "admin";
-//     return token;
-//   },
-// },
 // const options = {
 //     callbacks: {
 //         async signIn({ account, profile }) {

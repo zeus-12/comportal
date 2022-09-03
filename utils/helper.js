@@ -1,6 +1,6 @@
 export const allowedCategories = [
   "health_hygiene",
-  "electricity",
+  "electrical",
   "plumbing",
   "staff",
   "other",
@@ -8,10 +8,39 @@ export const allowedCategories = [
 
 export const categoryData = [
   { value: "health_hygiene", label: "Health and Hygiene" },
-  { value: "electricity", label: "Electricity" },
+  { value: "electrical", label: "Electrical" },
   { value: "plumbing", label: "Plumbing" },
   { value: "staff", label: "Staff" },
   { value: "other", label: "Other" },
+];
+
+export const categoryWithTitleUrl = [
+  {
+    href: "health_hygiene",
+    title: "Health and Hygiene",
+    imageurl: "/health.jpg",
+  },
+  {
+    href: "staff",
+    title: "Staff",
+    imageurl: "/staff.jpg",
+  },
+
+  {
+    href: "electrical",
+    title: "Electrical",
+    imageurl: "/electrical.jpg",
+  },
+  {
+    href: "plumbing",
+    title: "Plumbing",
+    imageurl: "/plumbing.jpeg",
+  },
+  {
+    href: "others",
+    title: "Others",
+    imageurl: "/others.jpeg",
+  },
 ];
 
 export const toTitleCase = (str) => {
