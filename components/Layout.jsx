@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <ViewCard />
       <ComplaintBox newRequest={newRequest} setNewRequest={setNewRequest} />
 
-      <div className="mt-10">{children}</div>
+      <div className="mt-18">{children}</div>
     </div>
   );
 };

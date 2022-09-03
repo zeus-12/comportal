@@ -2,7 +2,7 @@ import { useState } from "react";
 import Router, { useRouter } from "next/router";
 import { Button, Card, Text, Grid, Pagination } from "@mantine/core";
 import Link from "next/link";
-
+import { allowedCategories, toTitleCase } from "../../utils/helper";
 // const complaints = [
 //   { key: 1 },
 //   { key: 2 },
@@ -37,12 +37,12 @@ import Link from "next/link";
 
 const server_url = "http://localhost:3000";
 
-const FilteredPage = ({ complaints }) => {
+const FilteredPage = ({ category, complaints }) => {
   return (
-    <>
-      <Text style={{ margin: "40px" }} weight={500} size="lg" mt="md">
-        Health and Hygiene
-      </Text>
+    <div className="mt-20">
+      <p className="ml-20 text-3xl font-semibold mb-2">
+        {toTitleCase(category)}
+      </p>
       <div
         style={{
           display: "flex",
@@ -57,7 +57,7 @@ const FilteredPage = ({ complaints }) => {
                 <Grid.Col xs={8} sm={7} md={6} lg={4} key={id}>
                   <Link href="">
                     <Card
-                      className="comptype"
+                      className="comptype hover:cursor-pointer"
                       shadow="sm"
                       p="xl"
                       style={{ padding: "2vmin", aspectRatio: " 2 / 1" }}
@@ -73,19 +73,18 @@ const FilteredPage = ({ complaints }) => {
               );
             })}
         </Grid>
-        <Pagination
+        {/* <Pagination
           style={{ margin: "5vmin 0" }}
           total={10}
           color="gray"
           radius="md"
-        />
+        /> */}
       </div>
-    </>
+    </div>
   );
 };
 
 export const getServerSideProps = async (context) => {
-  const allowedCategories = ["health_hygiene", "sports", "technical", "other"];
   const { category } = context.query;
   if (!allowedCategories.includes(category)) {
     return {
@@ -98,6 +97,7 @@ export const getServerSideProps = async (context) => {
     const data = await res.json();
     return {
       props: {
+        category,
         complaints: data.data,
         // complaints: JSON.parse(JSON.stringify(data.data)),
       },
