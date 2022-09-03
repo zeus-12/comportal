@@ -1,4 +1,5 @@
 import { Burger, Drawer } from "@mantine/core";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -15,15 +16,20 @@ const LinkComponent = ({ link, name }) => (
   </Link>
 );
 
-const LinkElements = () => (
+const LinkElements = ({ session }) => (
   <>
     {LinkItems.map((item, i) => (
       <LinkComponent key={i} link={item.link} name={item.name} />
     ))}
-    {/* login and user */}
-    {/* todo */}
-    <LinkComponent link="/login" name="Login" />
-    <LinkComponent link="/user" name="User" />
+
+    {/* todo add logout*/}
+    {session && (
+      <div className="flex justify-center items-center">
+        <img src={session.user.image} className="w-9 h-9 rounded-full" />
+        <LinkComponent link="/user" name={session.user.name} />
+      </div>
+    )}
+    {!session && <LinkComponent link="/api/auth/signin" name="Login" />}
   </>
 );
 
@@ -40,7 +46,7 @@ const Logo = ({ setOpened }) => (
   </Link>
 );
 
-const NavbarDrawer = ({ opened, setOpened }) => (
+const NavbarDrawer = ({ opened, setOpened, session }) => (
   <Drawer
     className="pt-4 px-2 bg-black"
     onClick={() => setOpened(false)}
@@ -54,12 +60,13 @@ const NavbarDrawer = ({ opened, setOpened }) => (
     zIndex={20}
   >
     <div className="text-2xl pt-16 space-y-4">
-      <LinkElements />
+      <LinkElements session={session} />
     </div>
   </Drawer>
 );
 
 export default function Navbar() {
+  const { data: session } = useSession();
   //for the burger & drawer
   const [opened, setOpened] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
@@ -90,13 +97,13 @@ export default function Navbar() {
         )}
         {!opened && (
           <div className="text-gray-300 text-lg font-medium hidden xl:gap-8 sm:flex gap-8">
-            <LinkElements />
+            <LinkElements session={session} />
           </div>
         )}
       </div>
 
       <div className="absolute top-10">
-        <NavbarDrawer setOpened={setOpened} opened={opened} />
+        <NavbarDrawer session={session} setOpened={setOpened} opened={opened} />
       </div>
     </div>
   );
