@@ -1,29 +1,35 @@
 import { Burger, Drawer } from "@mantine/core";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
 const LinkItems = [
   { link: "/", name: "Complaints" },
   { link: "/new", name: "New Complaint" },
-  //   { link: "/login", name: "Login" },
-  //   { link: "/login", name: "Login" },
 ];
 
-const LinkElements = () => (
+const LinkComponent = ({ link, name }) => (
+  <Link href={link} passHref>
+    <p className="px-2 py-1 text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
+      {name}
+    </p>
+  </Link>
+);
+
+const LinkElements = ({ session }) => (
   <>
     {LinkItems.map((item, i) => (
-      <Link href={item.link} passHref>
-        <p className="px-2 py-1 text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-          {item.name}
-        </p>
-      </Link>
+      <LinkComponent key={i} link={item.link} name={item.name} />
     ))}
 
-    <Link href="#contact" passHref>
-      <p className="px-2 py-1 text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-        Contact
-      </p>
-    </Link>
+    {/* todo add logout*/}
+    {session && (
+      <div className="flex justify-center items-center">
+        <img src={session.user.image} className="w-9 h-9 rounded-full" />
+        <LinkComponent link="/user" name={session.user.name} />
+      </div>
+    )}
+    {!session && <LinkComponent link="/api/auth/signin" name="Login" />}
   </>
 );
 
@@ -33,35 +39,34 @@ const Logo = ({ setOpened }) => (
       onClick={() => setOpened(false)}
       className="flex items-center hover:cursor-pointer"
     >
-      <p>
+      <p className="text-lg">
         Com<span className="text-blue-400">portal</span>
       </p>
     </div>
   </Link>
 );
 
-const NavbarDrawer = ({ opened, setOpened }) => (
-  <div>
-    <Drawer
-      className="pt-4 px-2 bg-black"
-      onClick={() => setOpened(false)}
-      opened={opened}
-      position="top"
-      size="100vh"
-      onClose={() => setOpened(false)}
-      overlayOpacity={0.55}
-      overlayBlur={3}
-      withCloseButton={false}
-      zIndex={20}
-    >
-      <div className="text-2xl pt-16 space-y-4">
-        <LinkElements />
-      </div>
-    </Drawer>
-  </div>
+const NavbarDrawer = ({ opened, setOpened, session }) => (
+  <Drawer
+    className="pt-4 px-2 bg-black"
+    onClick={() => setOpened(false)}
+    opened={opened}
+    position="top"
+    size="100vh"
+    onClose={() => setOpened(false)}
+    overlayOpacity={0.55}
+    overlayBlur={3}
+    withCloseButton={false}
+    zIndex={20}
+  >
+    <div className="text-2xl pt-16 space-y-4">
+      <LinkElements session={session} />
+    </div>
+  </Drawer>
 );
 
 export default function Navbar() {
+  const { data: session } = useSession();
   //for the burger & drawer
   const [opened, setOpened] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
@@ -72,7 +77,7 @@ export default function Navbar() {
         <Logo setOpened={setOpened} />
         <div className="sm:hidden">
           <Burger
-            color="#26c6da"
+            color="#60a5fa"
             opened={opened}
             onClick={() => setOpened((o) => !o)}
             title={title}
@@ -92,13 +97,13 @@ export default function Navbar() {
         )}
         {!opened && (
           <div className="text-gray-300 text-lg font-medium hidden xl:gap-8 sm:flex gap-8">
-            <LinkElements />
+            <LinkElements session={session} />
           </div>
         )}
       </div>
 
       <div className="absolute top-10">
-        <NavbarDrawer setOpened={setOpened} opened={opened} />
+        <NavbarDrawer session={session} setOpened={setOpened} opened={opened} />
       </div>
     </div>
   );
