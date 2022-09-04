@@ -7,9 +7,12 @@ const ComplaintModal = ({ cur, setCur }) => {
     <Modal
       opened={opened}
       onClose={() => setCur({})}
+      size="lg"
       title={cur.title}
       classNames={{
         title: "text-4xl",
+        modal: "bg-[#0D2A53] rounded-xl"
+        
       }}
       centered
     >

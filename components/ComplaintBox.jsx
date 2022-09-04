@@ -70,6 +70,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         onClick={() => form.removeListItem("links", index)}
         variant="outline"
         color="red"
+        className="hover:text-white hover:bg-red-500"
       >
         <RiDeleteBin6Line />
       </Button>
@@ -138,6 +139,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
                 <Button
                   onClick={() => form.insertListItem("links", { link: "" })}
                   variant="outline"
+                  className="hover:bg-[#1da1f2] hover:text-white "
                 >
                   Add Link
                 </Button>
