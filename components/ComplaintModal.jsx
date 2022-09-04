@@ -24,7 +24,7 @@ const ComplaintModal = ({ cur, setCur }) => {
               <p className="text-gray-300">- {cur.name}</p>
             </div>
             <div>
-              <p className="text-gray-400">{cur.createdAt}</p>
+              <p className="text-gray-400">{isostringToDate(cur.createdAt)}</p>
             </div>
           </div>
         </div>

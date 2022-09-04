@@ -14,9 +14,11 @@ export const categoryData = [
   { value: "other", label: "Other" },
 ];
 
-export const isostringToDate = (date) => {
-  var date = new Date(date);
-  console.log(date);
+export const isostringToDate = (d) => {
+  if (!d) {
+    return d;
+  }
+  var date = new Date(d.toString());
   return date.toISOString().substring(0, 10);
 };
 

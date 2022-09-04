@@ -90,7 +90,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
         classNames={{
           title: "text-2xl font-semibold",
         }}
-        centered={true}
+        centered
       >
         {
           <div className="">
