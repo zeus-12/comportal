@@ -39,11 +39,11 @@ export const ComplaintCard = ({ item, setCur }) => {
       radius="md"
       withBorder
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between my-2">
         <p className="text-2xl font-semibold">{item.title}</p>
         <p className="text-gray-400">27/11/2001</p>
       </div>
-      <p className="overflow-ellipsis break-words">{item.description}</p>
+      <p className="truncate break-words">{item.description}</p>
     </Card>
   );
 };

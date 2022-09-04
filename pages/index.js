@@ -44,6 +44,8 @@ export default function Home() {
                     />
                     <Text
                       weight={500}
+                      className="bg-[#0d1d31]"
+                      color="white"
                       style={{
                         padding: "0.5rem",
                         width: "100%",
