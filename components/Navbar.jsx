@@ -73,7 +73,7 @@ export default function Navbar({ setNewRequest }) {
 
   return (
     <div>
-      <div className="px-6 border-b-[1px] border-gray-800 w-screen h-16 bg-black fixed top-0 flex justify-between items-center z-50 ">
+      <div className="px-6 border-b-[1px] border-gray-800 w-screen h-[10vh] bg-[#000000]  top-0 flex justify-between items-center z-50 ">
         <Logo setOpened={setOpened} />
         <div className="sm:hidden">
           <Burger

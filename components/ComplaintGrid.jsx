@@ -4,7 +4,7 @@ import Link from "next/link";
 const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
   return (
     <div>
-      <Grid style={{ width: "90vw" }} mx={"auto"} gutter={20} justify="center">
+      <Grid style={{ width: "90vw" }} mx={"auto"} gutter={20}>
         {complaints &&
           complaints.map((item, id) => {
             return (
@@ -32,7 +32,7 @@ export const ComplaintCard = ({ item, setCur }) => {
   return (
     <Card
       onClick={() => setCur(item)}
-      className="comptype hover:cursor-pointer h-32"
+      className="comptype hover:cursor-pointer h-32 bg-[#0d1d31]"
       shadow="sm"
       radius="md"
       withBorder

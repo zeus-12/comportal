@@ -17,8 +17,8 @@ const FilteredPage = ({ category, complaints }) => {
   }, [cur]);
 
   return (
-    <div className="mt-20">
-      <p className="ml-20 text-3xl font-semibold mb-2">
+    <div className="">
+      <p className="text-3xl p-8 font-semibold mb-2">
         {category && toTitleCase(category)}
       </p>
       <div

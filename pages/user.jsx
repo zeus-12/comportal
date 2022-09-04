@@ -20,7 +20,7 @@ const User = ({ session, complaints }) => {
 
   return (
     <>
-      <div className="flex justify-between mt-24 px-4">
+      <div className="flex justify-between  px-4 pt-12">
         <div className="flex text-3xl">
           <p className="mb-10">Hey,</p>
           <p className="">{session.user.name}</p>

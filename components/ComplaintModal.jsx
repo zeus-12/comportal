@@ -8,8 +8,11 @@ const ComplaintModal = ({ cur, setCur }) => {
       opened={opened}
       onClose={() => setCur({})}
       title="Title"
+      size="lg"
       classNames={{
         title: "text-4xl",
+        modal: "bg-[#0D2A53] rounded-xl"
+        
       }}
       centered
     >
