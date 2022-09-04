@@ -3,8 +3,9 @@
 # Run Instructions
 
 To run the app, do
-yarn
-yarn dev
+
+- yarn
+- yarn dev
 
 # Details about Installations
 
