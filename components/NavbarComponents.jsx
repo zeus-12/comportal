@@ -1,6 +1,7 @@
 import { Drawer } from "@mantine/core";
 import Link from "next/link";
 import { useState } from "react";
+import { Error } from "./Notifications";
 
 export const LinkComponent = ({ link, name }) => (
   <Link href={link} passHref>
