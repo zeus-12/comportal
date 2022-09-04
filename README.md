@@ -1,5 +1,6 @@
 # TechSoc Hackathon
 
+<hr/>
 # Run Instructions
 
 To run the app, do
