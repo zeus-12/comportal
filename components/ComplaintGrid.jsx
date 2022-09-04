@@ -4,27 +4,29 @@ import Link from "next/link";
 const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
   return (
     <div>
-      <Grid style={{ width: "90vw" }} mx="auto" gutter={20}>
-        {complaints &&
-          complaints.map((item, id) => {
-            return (
-              <GridWrapper key={id}>
-                <Link href="">
-                  <ComplaintCard setCur={setCur} item={item} />
-                </Link>
-              </GridWrapper>
-            );
-          })}
-      </Grid>
+      <GridWrapper>
+        <Grid style={{ width: "90vw" }} mx="auto" gutter={20}>
+          {complaints &&
+            complaints.map((item, id) => {
+              return (
+                <Grid.Col mx="auto" xs={8} sm={7} md={6} lg={4} key={id}>
+                  <Link href="">
+                    <ComplaintCard setCur={setCur} item={item} />
+                  </Link>
+                </Grid.Col>
+              );
+            })}
+        </Grid>
+      </GridWrapper>
     </div>
   );
 };
 
 export const GridWrapper = ({ children }) => {
   return (
-    <Grid.Col mx="auto" xs={8} sm={7} md={6} lg={4}>
+    <Grid style={{ width: "90vw" }} mx="auto" gutter={20}>
       {children}
-    </Grid.Col>
+    </Grid>
   );
 };
 

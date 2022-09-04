@@ -1,5 +1,5 @@
 import { Notification } from "@mantine/core";
-import { MdCancel } from "react-icons/md";
+import { MdError } from "react-icons/md";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 
 export function Success({ success }) {
@@ -24,9 +24,10 @@ export function Error({ error }) {
     <Notification
       className="fixed z-10 right-4 bottom-[2vh]"
       disallowClose
-      icon={MdCancel}
+      icon={<MdError />}
       title="Error"
       radius="md"
+      color="red"
       classNames={{
         children: "bg-[#dc2626]",
       }}

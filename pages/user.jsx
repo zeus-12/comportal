@@ -1,15 +1,13 @@
 import { authOptions } from "./api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { Button } from "@mantine/core";
 import dbConnect from "../utils/dbConnect";
 import Complaint from "../models/complaint";
 import ComplaintGrid from "../components/ComplaintGrid";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ComplaintModal from "../components/ComplaintModal";
 import Router from "next/router";
-
-const server_url = "http://localhost:3000";
 
 const User = ({ session, complaints }) => {
   const signoutHandler = () => {
@@ -19,15 +17,12 @@ const User = ({ session, complaints }) => {
 
   const [cur, setCur] = useState({});
 
-  useEffect(() => {
-    if (cur) {
-    }
-  }, [cur]);
-
   return (
     <>
-      <div className="flex justify-between pt-8 px-20">
-        <p className="mb-10 text-3xl font-semibold">Hey, {session.user.name}</p>
+      <div className="flex justify-between pt-4 md:px-20 sm:px-8 px-4 items-center mb-8">
+        <p className="md:text-3xl sm:text-2xl text-xl font-semibold">
+          Hey, {session.user.name}
+        </p>
 
         <Button
           className="hover:bg-[#1da1f2] hover:text-white border-[#1da1f2] text-[#1da1f2]"
@@ -69,7 +64,6 @@ export const getServerSideProps = async (context) => {
     return {
       props: {
         session,
-        // complaints: data,
         complaints: JSON.parse(JSON.stringify(data)),
       },
     };

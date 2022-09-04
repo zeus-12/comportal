@@ -3,24 +3,25 @@ import Head from "next/head";
 import Link from "next/link";
 import { categoryWithTitleUrl } from "../utils/helper";
 
-export default function Home({ complaints }) {
+export default function Home() {
   return (
-    <div className="">
+    <div>
       <Head>
         <title>Complaint Portal</title>
         <meta
           name="description"
           content="Submit your hostel related complaints here"
         />
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
-      <div className="p-8">
+      <div className="pt-4 md:px-20 sm:px-8 px-4 mb-8">
         <p className="font-semibold text-3xl">Complaints</p>
       </div>
 
       <Grid
-        style={{ width: "80vw", marginLeft: "10vw" }}
+        className="mx-auto"
+        style={{ width: "90vw" }}
         gutter={20}
         justify="center"
       >

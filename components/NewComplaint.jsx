@@ -12,8 +12,9 @@ import { useSession } from "next-auth/react";
 import { categoryData } from "../utils/helper";
 import { useState } from "react";
 import { Error, Success } from "./Notifications";
+import { HiOutlinePlus } from "react-icons/hi";
 
-export default function ComplaintBox({ setNewRequest, newRequest }) {
+export default function NewComplaint({ setNewRequest, newRequest }) {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -58,7 +59,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
     setNewRequest(false);
   };
 
-  const fields = form.values.links.map((item, index) => (
+  const LinksFields = form.values.links.map((item, index) => (
     <Group key={index} mt="xs">
       <TextInput
         placeholder="Link"
@@ -72,7 +73,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         color="red"
         className="hover:text-white hover:bg-red-500"
       >
-        <RiDeleteBin6Line />
+        <RiDeleteBin6Line className="w-4 h-5" />
       </Button>
     </Group>
   ));
@@ -88,16 +89,17 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
         classNames={{
           title: "text-2xl font-semibold",
         }}
-        centered
+        centered={true}
       >
         {
           <div className="">
             <form onSubmit={submitHandler} className="flex flex-col">
-              <div className="mb-2">
+              <div className="mb-2 flex justify-between text-gray-400 font-semibold">
                 <p>{name}</p>
                 <p>{email}</p>
               </div>
               <NumberInput
+                hideControls={true}
                 required={true}
                 placeholder="Phone Number"
                 label="Phone Number"
@@ -108,7 +110,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
 
               <Select
                 label="Category"
-                placeholder="Pick One"
+                placeholder="Choose category"
                 variant="filled"
                 size="md"
                 {...form.getInputProps("category")}
@@ -116,7 +118,7 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
               />
               <TextInput
                 required={true}
-                placeholder="eg:Leakage in Kitchen"
+                placeholder="eg: No Wi-Fi"
                 label="Title"
                 variant="filled"
                 size="md"
@@ -130,20 +132,18 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
                 size="md"
                 {...form.getInputProps("description")}
               />
-              <p className="font-medium">
-                Add relevent links for your complaint
-              </p>
-
-              {fields}
-              <Group position="center" mt="md">
+              <div className="flex justify-between mt-2">
+                <p className="font-medium">Add links</p>
                 <Button
                   onClick={() => form.insertListItem("links", { link: "" })}
                   variant="outline"
                   className="hover:bg-[#1da1f2] hover:text-white "
                 >
-                  Add Link
+                  <HiOutlinePlus className="w-4 h-5" />
                 </Button>
-              </Group>
+              </div>
+
+              {LinksFields}
 
               <Button
                 type="submit"

@@ -11,24 +11,19 @@ const ComplaintModal = ({ cur, setCur }) => {
       title={cur.title}
       classNames={{
         title: "text-4xl",
-        modal: "bg-[#0D2A53] rounded-xl"
-        
+        modal: "bg-[#0D2A53] rounded-xl",
       }}
       centered
     >
       {cur && (
         <div>
-          {/* <div className="flex justify-between mb-2 ">
-            <h2 className="text-lg">{cur.title}</h2>
-          </div> */}
           <p className="text-[#78716c]">{cur.description}</p>
           <div className="mt-2 flex justify-between">
             <div>
-              <h2>Posted By</h2>
-              <h2>{cur.name}</h2>
+              <p className="text-gray-300">- {cur.name}</p>
             </div>
             <div>
-              <h2>03/09/22</h2>
+              <p>03/09/22</p>
             </div>
           </div>
         </div>
