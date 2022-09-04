@@ -52,13 +52,13 @@ export const LinkElements = ({ setNewRequest, session }) => {
   );
 };
 
-export const Logo = ({ setOpened }) => (
+export const Logo = ({ setOpened, textSize = "text-2xl" }) => (
   <Link href="/" passHref>
     <div
       onClick={() => setOpened(false)}
       className="flex items-center hover:cursor-pointer"
     >
-      <p className="text-2xl">
+      <p className={textSize}>
         Com<span className="text-blue-400">portal</span>
       </p>
     </div>

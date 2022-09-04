@@ -18,7 +18,7 @@ const FilteredPage = ({ category, complaints }) => {
           <ComplaintModal setCur={setCur} cur={cur} />
         </div>
       ) : (
-        <p className="text-2xl  font-semibold ">No Complaints</p>
+        <p className="text-xl ml-8 font-semibold ">No Complaints</p>
       )}
     </div>
   );
