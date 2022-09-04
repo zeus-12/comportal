@@ -37,7 +37,11 @@ export const LinkElements = ({ setNewRequest, session }) => {
       {/* Logout & SignIn*/}
       {session && (
         <div className="flex justify-center items-center">
-          <img src={session.user.image} className="w-9 h-9 rounded-full" />
+          <img
+            alt="user"
+            src={session.user.image}
+            className="w-9 h-9 rounded-full"
+          />
           <LinkComponent link="/user" name={session.user.name} />
         </div>
       )}

@@ -38,6 +38,7 @@ export default function Home() {
                 >
                   <Card.Section>
                     <Image
+                      alt={a.title}
                       src={a.imageurl}
                       style={{ aspectRatio: "2 / 1", overflow: "hidden" }}
                     />
