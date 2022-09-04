@@ -17,7 +17,9 @@ export default async function handler(req, res) {
       res
         .status(200)
         .json({ success: true, data: JSON.parse(JSON.stringify(complaints)) });
-    } catch (error) {}
+    } catch (error) {
+      res.status(400).json({ success: false });
+    }
   } else if (req.method == "POST") {
     try {
       await Complaint.create(req.body);

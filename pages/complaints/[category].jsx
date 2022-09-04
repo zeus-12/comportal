@@ -25,6 +25,7 @@ const FilteredPage = ({ category, complaints }) => {
 };
 
 export const getServerSideProps = async (context) => {
+  const SERVER_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   const { category } = context.query;
   if (!allowedCategories.includes(category)) {
     return {
@@ -33,7 +34,7 @@ export const getServerSideProps = async (context) => {
   }
 
   try {
-    const res = await fetch(`/api/complaints/${category}`);
+    const res = await fetch(`${SERVER_URL}/api/complaints/${category}`);
     const data = await res.json();
     return {
       props: {
