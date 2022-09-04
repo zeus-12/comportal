@@ -3,8 +3,6 @@ import ComplaintGrid from "../../components/ComplaintGrid";
 import ComplaintModal from "../../components/ComplaintModal";
 import { allowedCategories, toTitleCase } from "../../utils/helper";
 
-const server_url = "http://localhost:3000";
-
 const FilteredPage = ({ category, complaints }) => {
   const [cur, setCur] = useState({});
 
@@ -35,7 +33,7 @@ export const getServerSideProps = async (context) => {
   }
 
   try {
-    const res = await fetch(server_url + `/api/complaints/${category}`);
+    const res = await fetch(`/api/complaints/${category}`);
     const data = await res.json();
     return {
       props: {
