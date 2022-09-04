@@ -26,9 +26,8 @@ const User = ({ session, complaints }) => {
 
   return (
     <>
-      <div className="flex justify-between mt-24 px-20">
+      <div className="flex justify-between pt-8 px-20">
         <p className="mb-10 text-3xl font-semibold">Hey, {session.user.name}</p>
-
 
         <Button
           className="hover:bg-[#1da1f2] hover:text-white border-[#1da1f2] text-[#1da1f2]"

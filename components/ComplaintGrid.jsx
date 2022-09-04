@@ -4,7 +4,7 @@ import Link from "next/link";
 const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
   return (
     <div>
-      <Grid style={{ width: "90vw" }} mx={"auto"} gutter={20}>
+      <Grid style={{ width: "90vw" }} mx="auto" gutter={20}>
         {complaints &&
           complaints.map((item, id) => {
             return (
@@ -22,7 +22,7 @@ const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
 
 export const GridWrapper = ({ children }) => {
   return (
-    <Grid.Col xs={8} sm={7} md={6} lg={4}>
+    <Grid.Col mx="auto" xs={8} sm={7} md={6} lg={4}>
       {children}
     </Grid.Col>
   );
