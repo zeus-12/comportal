@@ -10,15 +10,15 @@ To run the app, do
 
 # Details about Installations
 
-Our dev dependencies include
+Our Dependencies include
 
-- TailwindCSS and its dependencies, and for the dependencies we used include
-- mantine(and its dependencies)- A UI component Library,
+- Mantine(and its dependencies)- A UI component Library,
 - Mongoose (ODM for MongoDB),
-- next-auth for authentications,
+- Next-auth for authentications,
 - react-icons for svg icons, and
 - Nextjs,
-- reactjs.
+- Reactjs
+- For Dev Dependencies, TailwindCSS and its dependencies
 
 # System Design
 
