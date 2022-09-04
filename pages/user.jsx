@@ -7,10 +7,16 @@ import Complaint from "../models/complaint";
 import ComplaintGrid from "../components/ComplaintGrid";
 import { useEffect, useState } from "react";
 import ComplaintModal from "../components/ComplaintModal";
+import Router from "next/router";
 
 const server_url = "http://localhost:3000";
 
 const User = ({ session, complaints }) => {
+  const signoutHandler = () => {
+    signOut();
+    Router.push("/");
+  };
+
   const [cur, setCur] = useState({});
 
   useEffect(() => {
@@ -20,14 +26,13 @@ const User = ({ session, complaints }) => {
 
   return (
     <>
-      <div className="flex justify-between mt-24 px-4">
-        <div className="flex text-3xl">
-          <p className="mb-10">Hey,</p>
-          <p className="">{session.user.name}</p>
-        </div>
+      <div className="flex justify-between mt-24 px-20">
+        <p className="mb-10 text-3xl font-semibold">Hey, {session.user.name}</p>
+
         <Button
-          className="hover:bg-[#1da1f2] hover:text-white border-[#1da1f2]"
-          onClick={signOut}
+          className="hover:bg-[#1da1f2] hover:text-white border-[#1da1f2] text-[#1da1f2]"
+          color="#1da1f2"
+          onClick={signoutHandler}
           variant="outline"
         >
           Sign Out

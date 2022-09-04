@@ -7,7 +7,7 @@ const ComplaintModal = ({ cur, setCur }) => {
     <Modal
       opened={opened}
       onClose={() => setCur({})}
-      title="Title"
+      title={cur.title}
       classNames={{
         title: "text-4xl",
       }}
@@ -15,9 +15,9 @@ const ComplaintModal = ({ cur, setCur }) => {
     >
       {cur && (
         <div>
-          <div className="flex justify-between mb-2 ">
+          {/* <div className="flex justify-between mb-2 ">
             <h2 className="text-lg">{cur.title}</h2>
-          </div>
+          </div> */}
           <p className="text-[#78716c]">{cur.description}</p>
           <div className="mt-2 flex justify-between">
             <div>

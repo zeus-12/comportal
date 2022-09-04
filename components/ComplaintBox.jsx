@@ -11,9 +11,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSession } from "next-auth/react";
 import { categoryData } from "../utils/helper";
 import { useState } from "react";
+import { Error, Success } from "./Notifications";
 
 export default function ComplaintBox({ setNewRequest, newRequest }) {
-  const [load, setLoad] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const { data: session } = useSession();
   const name = session?.user?.name;
   const email = session?.user?.email;
@@ -30,7 +33,6 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    setLoad(true);
     const res = await fetch(`/api/complaints/${form.values.category}`, {
       method: "POST",
       headers: {
@@ -39,8 +41,21 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
       body: JSON.stringify({ ...form.values, name, email }),
     });
 
-    console.log(res);
-    setLoad(false);
+    const data = await res.json();
+
+    if (data.success) {
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
+    form.reset();
+    setNewRequest(false);
   };
 
   const fields = form.values.links.map((item, index) => (
@@ -63,12 +78,14 @@ export default function ComplaintBox({ setNewRequest, newRequest }) {
 
   return (
     <>
+      {success && <Success message="Added Complaint" />}
+      {error && <Error message="Added Complaint" />}
       <Modal
         opened={newRequest}
         onClose={() => setNewRequest(false)}
         title="Register Your Complaint"
         classNames={{
-          title: "text-2xl font-semibold ",
+          title: "text-2xl font-semibold",
         }}
         centered
       >

@@ -1,5 +1,3 @@
-import { Button, Card, Grid } from "@mantine/core";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import ComplaintGrid from "../../components/ComplaintGrid";
 import ComplaintModal from "../../components/ComplaintModal";
@@ -15,9 +13,17 @@ const FilteredPage = ({ category, complaints }) => {
     if (cur) {
     }
   }, [cur]);
+  // todo
+  if (complaints.length == 0) {
+    return (
+      <div>
+        <p className="text-2xl">No Complaints</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="mt-20">
+    <div className="">
       <p className="ml-20 text-3xl font-semibold mb-2">
         {category && toTitleCase(category)}
       </p>
@@ -50,7 +56,6 @@ export const getServerSideProps = async (context) => {
       props: {
         category,
         complaints: data.data,
-        // complaints: JSON.parse(JSON.stringify(data.data)),
       },
     };
   } catch (error) {
