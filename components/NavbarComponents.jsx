@@ -52,7 +52,7 @@ export const LinkElements = ({ setNewRequest, session }) => {
   );
 };
 
-export const Logo = ({ setOpened, textSize = "text-2xl" }) => (
+export const Logo = ({ setOpened = () => {}, textSize = "text-2xl" }) => (
   <Link href="/" passHref>
     <div
       onClick={() => setOpened(false)}

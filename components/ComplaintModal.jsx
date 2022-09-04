@@ -1,4 +1,5 @@
 import { Modal } from "@mantine/core";
+import { isostringToDate } from "../utils/helper";
 
 const ComplaintModal = ({ cur, setCur }) => {
   const opened = Object.values(cur).length > 0;
@@ -23,7 +24,7 @@ const ComplaintModal = ({ cur, setCur }) => {
               <p className="text-gray-300">- {cur.name}</p>
             </div>
             <div>
-              <p>03/09/22</p>
+              <p className="text-gray-400">{cur.createdAt}</p>
             </div>
           </div>
         </div>

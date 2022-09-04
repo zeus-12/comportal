@@ -14,6 +14,12 @@ export const categoryData = [
   { value: "other", label: "Other" },
 ];
 
+export const isostringToDate = (date) => {
+  var date = new Date(date);
+  console.log(date);
+  return date.toISOString().substring(0, 10);
+};
+
 export const categoryWithTitleUrl = [
   {
     href: "health_hygiene",

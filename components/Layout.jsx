@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <div>
       <Navbar setNewRequest={setNewRequest} />
       <NewComplaint newRequest={newRequest} setNewRequest={setNewRequest} />
-      <div className=" bg-[#080d13] min-h-[90vh]">{children}</div>
+      <div className=" bg-[#080d13] min-h-[92vh]">{children}</div>
     </div>
   );
 };

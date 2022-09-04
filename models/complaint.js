@@ -11,6 +11,7 @@ const complaintSchema = new Schema(
       type: Number,
       required: true,
     },
+    // created_at: { type: Date, required: true, default: Date.now },
     category: {
       type: String,
       required: true,

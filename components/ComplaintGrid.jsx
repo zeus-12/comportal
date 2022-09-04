@@ -1,5 +1,6 @@
 import { Card, Grid } from "@mantine/core";
 import Link from "next/link";
+import { isostringToDate } from "../utils/helper";
 
 const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
   return (
@@ -41,7 +42,7 @@ export const ComplaintCard = ({ item, setCur }) => {
     >
       <div className="flex justify-between my-2">
         <p className="text-2xl font-semibold">{item.title}</p>
-        <p className="text-gray-400">27/11/2001</p>
+        <p className="text-gray-400">{item.createdAt}</p>
       </div>
       <p className="truncate break-words">{item.description}</p>
     </Card>
