@@ -60,8 +60,9 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
   };
 
   const LinksFields = form.values.links.map((item, index) => (
-    <Group key={index} mt="xs">
+    <Group key={index}>
       <TextInput
+        variant="filled"
         placeholder="Link"
         withAsterisk
         sx={{ flex: 1 }}
@@ -93,8 +94,8 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
       >
         {
           <div className="">
-            <form onSubmit={submitHandler} className="flex flex-col">
-              <div className="mb-2 flex justify-between text-gray-400 font-semibold">
+            <form onSubmit={submitHandler} className="flex gap-2 flex-col">
+              <div className="flex justify-between text-gray-400 font-semibold">
                 <p>{name}</p>
                 <p>{email}</p>
               </div>
@@ -132,7 +133,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
                 size="md"
                 {...form.getInputProps("description")}
               />
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-between  items-center">
                 <p className="font-medium">Add links</p>
                 <Button
                   onClick={() => form.insertListItem("links", { link: "" })}
@@ -151,7 +152,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
                 centered
                 size="md"
                 classNames={{
-                  root: "bg-[#1da1f2] mt-2 w-[]",
+                  root: "bg-blue-400 hover:bg-blue-300 mt-2 w-[]",
                 }}
               >
                 Submit
