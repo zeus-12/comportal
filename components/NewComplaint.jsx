@@ -10,13 +10,12 @@ import { Modal, Group } from "@mantine/core";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSession } from "next-auth/react";
 import { categoryData } from "../utils/helper";
-import { useState } from "react";
-import { Error, Success } from "./Notifications";
+import { useContext } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
+import { NotificationContext } from "../context/NotificationContext";
 
 export default function NewComplaint({ setNewRequest, newRequest }) {
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const { setMessage, setType } = useContext(NotificationContext);
 
   const { data: session } = useSession();
   const name = session?.user?.name;
@@ -24,11 +23,11 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
 
   const form = useForm({
     initialValues: {
-      phoneNumber: "",
+      // phoneNumber: "",
       category: "",
       description: "",
       title: "",
-      links: [{ link: "" }],
+      links: [],
     },
   });
 
@@ -45,14 +44,16 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
     const data = await res.json();
 
     if (data.success) {
-      setSuccess(true);
+      setType("success");
+      setMessage("Your complaint has been submitted");
       setTimeout(() => {
-        setSuccess(false);
+        setType(null);
       }, 3000);
     } else {
-      setError(true);
+      setType("error");
+      setMessage("Something went wrong");
       setTimeout(() => {
-        setError(false);
+        setType(null);
       }, 3000);
     }
     form.reset();
@@ -66,7 +67,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
         placeholder="Link"
         withAsterisk
         sx={{ flex: 1 }}
-        {...form.getInputProps(`links.${index}.link`)}
+        {...form.getInputProps(`links.${index}`)}
       />
       <Button
         onClick={() => form.removeListItem("links", index)}
@@ -81,8 +82,6 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
 
   return (
     <>
-      {success && <Success message="Added Complaint" />}
-      {error && <Error message="Added Complaint" />}
       <Modal
         opened={newRequest}
         onClose={() => setNewRequest(false)}
@@ -90,7 +89,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
         classNames={{
           title: "text-2xl font-semibold",
         }}
-        centered
+        centered="true"
       >
         {
           <div className="">
@@ -99,7 +98,8 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
                 <p>{name}</p>
                 <p>{email}</p>
               </div>
-              <NumberInput
+              {/* remember to UNCOMMENT PHONENUMBER FROM MODEL WHEN REQ */}
+              {/* <NumberInput
                 hideControls={true}
                 required={true}
                 placeholder="Phone Number"
@@ -107,7 +107,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
                 variant="filled"
                 size="md"
                 {...form.getInputProps("phoneNumber")}
-              />
+              /> */}
 
               <Select
                 label="Category"
@@ -136,7 +136,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
               <div className="flex justify-between  items-center">
                 <p className="font-medium">Add links</p>
                 <Button
-                  onClick={() => form.insertListItem("links", { link: "" })}
+                  onClick={() => form.insertListItem("links", "")}
                   variant="outline"
                   className="hover:bg-[#1da1f2] hover:text-white "
                 >
@@ -149,7 +149,7 @@ export default function NewComplaint({ setNewRequest, newRequest }) {
               <Button
                 type="submit"
                 variant="filled"
-                centered
+                centered="true"
                 size="md"
                 classNames={{
                   root: "bg-blue-400 hover:bg-blue-300 mt-2 w-[]",

@@ -1,7 +1,7 @@
 import { Drawer } from "@mantine/core";
 import Link from "next/link";
-import { useState } from "react";
-import { Error } from "./Notifications";
+import { useContext, useState } from "react";
+import { NotificationContext } from "../context/NotificationContext";
 
 export const LinkComponent = ({ link, name }) => (
   <Link href={link} passHref>
@@ -12,20 +12,22 @@ export const LinkComponent = ({ link, name }) => (
 );
 
 export const LinkElements = ({ setNewRequest, session }) => {
-  const [error, setError] = useState(false);
+  const { type, setMessage, setType, message } =
+    useContext(NotificationContext);
+
   const newRequestHandler = () => {
     if (session) {
       setNewRequest(true);
     } else {
-      setError(true);
+      setType("error");
+      setMessage("Please login to create a new request");
       setTimeout(() => {
-        setError(false);
+        setType(null);
       }, 3000);
     }
   };
   return (
     <>
-      {error && <Error error="Please login to add complaint" />}
       <LinkComponent link="/" name="Complaints" />
 
       <p

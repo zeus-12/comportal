@@ -7,10 +7,10 @@ const complaintSchema = new Schema(
       type: String,
       required: true,
     },
-    phoneNumber: {
-      type: Number,
-      required: true,
-    },
+    // phoneNumber: {
+    //   type: Number,
+    //   required: true,
+    // },
     // created_at: { type: Date, required: true, default: Date.now },
     category: {
       type: String,

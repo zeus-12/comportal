@@ -12,7 +12,7 @@ export default function Navbar({ setNewRequest }) {
 
   return (
     <div>
-      <div className="px-6 border-b-[1px] border-gray-800 w-screen h-[8vh] bg-[#000000] relative top-0 flex justify-between items-center z-50 ">
+      <div className="px-6 border-b-[1px] border-gray-800 w-screen h-[8vh] bg-[#000000] relative top-0 flex justify-between items-center z-40 ">
         <Logo setOpened={setOpened} />
         <div className="sm:hidden">
           <Burger
@@ -24,6 +24,7 @@ export default function Navbar({ setNewRequest }) {
         </div>
 
         {/* so that the burger icon remains in the case --- you open the burger icon then increases the size */}
+        {/* NOT REALLY REQUIRED */}
         {opened && (
           <div className="hidden sm:flex">
             <Burger
