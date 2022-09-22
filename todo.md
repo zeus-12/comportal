@@ -9,10 +9,11 @@ make the animations smoother using framer motion
 Q) diff hostels how to display
 Q) what are the diff categories of complaints??
 
-- foodcourt related
-- anjappar/hfc/ prime mart related
+- foodcourt/mess related
+- anjappar/hfc/primemart/usha/ccd related
 - animal
 - hostel
+  - electricity/wifi
   - health
   - staff
 - proff
