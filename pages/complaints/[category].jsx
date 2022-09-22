@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ComplaintGrid from "../../components/ComplaintGrid";
 import ComplaintModal from "../../components/ComplaintModal";
-import { allowedCategories, toTitleCase } from "../../utils/helper";
+import { allowedCategories } from "../../utils/constants";
+import { toTitleCase } from "../../utils/calculations";
 
 const FilteredPage = ({ category, complaints }) => {
   const [cur, setCur] = useState({});

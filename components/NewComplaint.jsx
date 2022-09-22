@@ -9,10 +9,10 @@ import { useForm } from "@mantine/form";
 import { Modal, Group } from "@mantine/core";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSession } from "next-auth/react";
-import { categoryData } from "../utils/helper";
+import { categoryData } from "../utils/constants";
 import { useContext } from "react";
 import { HiOutlinePlus } from "react-icons/hi";
-import { NotificationContext } from "../context/NotificationContext";
+import { NotificationContext } from "../utils/context";
 
 export default function NewComplaint({ setNewRequest, newRequest }) {
   const { setMessage, setType } = useContext(NotificationContext);

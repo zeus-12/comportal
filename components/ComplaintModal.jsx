@@ -1,5 +1,5 @@
 import { Modal } from "@mantine/core";
-import { isostringToDate } from "../utils/helper";
+import { isostringToDate } from "../utils/date";
 
 const ComplaintModal = ({ cur, setCur }) => {
   const opened = Object.values(cur).length > 0;

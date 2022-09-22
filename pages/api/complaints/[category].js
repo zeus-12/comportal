@@ -1,6 +1,6 @@
 import dbConnect from "../../../utils/dbConnect";
 import Complaint from "../../../models/complaint";
-import { allowedCategories } from "../../../utils/helper";
+import { allowedCategories } from "../../../utils/constants";
 
 export default async function handler(req, res) {
   const category = req.query.category;

@@ -14,14 +14,6 @@ export const categoryData = [
   { value: "other", label: "Other" },
 ];
 
-export const isostringToDate = (d) => {
-  if (!d) {
-    return d;
-  }
-  var date = new Date(d.toString());
-  return date.toISOString().substring(0, 10);
-};
-
 export const categoryWithTitleUrl = [
   {
     href: "health_hygiene",
@@ -50,10 +42,3 @@ export const categoryWithTitleUrl = [
     imageurl: "/others.jpeg",
   },
 ];
-
-export const toTitleCase = (str) => {
-  str = str.split("_").join(" ");
-  return str.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
-};

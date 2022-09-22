@@ -5,6 +5,7 @@ import { Logo } from "../../components/NavbarComponents";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 export default function SignIn({ providers }) {
+  // console.log(providers);
   return (
     <div className="login-background h-[92vh] flex justify-center items-center">
       {Object.values(providers).map((provider) => (

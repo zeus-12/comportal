@@ -1,6 +1,5 @@
 import { Card, Grid } from "@mantine/core";
-import Link from "next/link";
-import { isostringToDate } from "../utils/helper";
+import { isostringToDate } from "../utils/date";
 
 const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
   return (
@@ -11,9 +10,7 @@ const ComplaintGrid = ({ complaints, setCur = () => {} }) => {
             complaints.map((item, id) => {
               return (
                 <Grid.Col mx="auto" xs={8} sm={7} md={6} lg={4} key={id}>
-                  <Link href="">
-                    <ComplaintCard setCur={setCur} item={item} />
-                  </Link>
+                  <ComplaintCard setCur={setCur} item={item} />
                 </Grid.Col>
               );
             })}

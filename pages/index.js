@@ -1,7 +1,7 @@
 import { Card, Image, Text, Grid } from "@mantine/core";
 import Head from "next/head";
 import Link from "next/link";
-import { categoryWithTitleUrl } from "../utils/helper";
+import { categoryWithTitleUrl } from "../utils/constants";
 
 export default function Home() {
   return (

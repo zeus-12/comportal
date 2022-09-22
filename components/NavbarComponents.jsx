@@ -1,7 +1,7 @@
 import { Drawer } from "@mantine/core";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { NotificationContext } from "../context/NotificationContext";
+import { NotificationContext } from "../utils/context";
 
 export const LinkComponent = ({ link, name }) => (
   <Link href={link} passHref>
@@ -29,7 +29,6 @@ export const LinkElements = ({ setNewRequest, session }) => {
   return (
     <>
       <LinkComponent link="/" name="Complaints" />
-
       <p
         onClick={newRequestHandler}
         className="px-2 py-1 text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900"
