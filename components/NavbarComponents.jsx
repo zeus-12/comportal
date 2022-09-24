@@ -1,6 +1,6 @@
 import { Drawer } from "@mantine/core";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { NotificationContext } from "../utils/context";
 
 export const LinkComponent = ({ link, name }) => (
@@ -12,8 +12,7 @@ export const LinkComponent = ({ link, name }) => (
 );
 
 export const LinkElements = ({ setNewRequest, session }) => {
-  const { type, setMessage, setType, message } =
-    useContext(NotificationContext);
+  const { setMessage, setType } = useContext(NotificationContext);
 
   const newRequestHandler = () => {
     if (session) {

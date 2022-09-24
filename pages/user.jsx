@@ -1,15 +1,31 @@
-import { authOptions } from "./api/auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Button } from "@mantine/core";
-import dbConnect from "../utils/dbConnect";
-import Complaint from "../models/complaint";
 import ComplaintGrid from "../components/ComplaintGrid";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ComplaintModal from "../components/ComplaintModal";
 import Router from "next/router";
+// import { AuthContext } from "../utils/context";
+// import { unstable_getServerSession } from "next-auth";
+// import { authOptions } from "./api/auth/[...nextauth]";
 
-const User = ({ session, complaints }) => {
+const User = () => {
+  // const name = "hi";
+  const { data } = useSession();
+  const name = data?.user.name;
+
+  // const data = useContext(AuthContext);
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      const res = await fetch("/api/complaints/me");
+      const data = (await res.json()).data;
+      setComplaints(data);
+    };
+
+    fetchComplaints();
+  }, []);
+
   const signoutHandler = () => {
     signOut();
     Router.push("/");
@@ -17,11 +33,16 @@ const User = ({ session, complaints }) => {
 
   const [cur, setCur] = useState({});
 
+  if (!complaints) {
+    return "Loading";
+  }
+
   return (
     <>
       <div className="flex justify-between pt-4 md:px-20 sm:px-8 px-4 items-center mb-8">
         <p className="md:text-3xl sm:text-2xl text-xl font-semibold">
-          Hey, {session.user.name}
+          {/* Hey, {session.user.name} */}
+          Hey, {name ? name : "there"}
         </p>
 
         <Button
@@ -39,40 +60,29 @@ const User = ({ session, complaints }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions
-  );
+// export const getServerSideProps = async (context) => {
+//   const session = await unstable_getServerSession(
+//     context.req,
+//     context.res,
+//     authOptions
+//   );
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
-      },
-    };
-  }
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/api/auth/signin",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  const email = session.user.email;
+//   const name = session.user.name;
 
-  await dbConnect();
-  try {
-    const data = await Complaint.find({ email });
-
-    return {
-      props: {
-        session,
-        complaints: JSON.parse(JSON.stringify(data)),
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      notFound: true,
-    };
-  }
-};
+//   return {
+//     props: {
+//       name,
+//     },
+//   };
+// };
 
 export default User;

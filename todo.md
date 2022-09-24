@@ -8,6 +8,8 @@
 - make the animations smoother using framer motion
 - make sure to only take required data from db. for eg: dont take every data in the case of requests, it reveals peoples email ids and phone numbers
 - add a loading screen
+- use middleware for hiding restricted pages and routes
+- add skeleton for loading
 
 Q) diff hostels how to display
 Q) what are the diff categories of complaints??

@@ -3,14 +3,19 @@ import Navbar from "./Navbar";
 import NewComplaint from "./NewComplaint";
 import { useState } from "react";
 import Notification from "./Notification";
-import { AuthContextProvider, NotificationContext } from "../utils/context";
+import { AuthContext, NotificationContext } from "../utils/context";
 const Layout = ({ children }) => {
   const [message, setMessage] = useState(null);
   const [type, setType] = useState(null);
 
   const [newRequest, setNewRequest] = useState(false);
+
+  const [userName, setUserName] = useState(null);
+  const [userImg, setUserImg] = useState(null);
   return (
-    <AuthContextProvider>
+    <AuthContext.Provider
+      value={{ userName, setUserName, userImg, setUserImg }}
+    >
       <NotificationContext.Provider
         value={{ message, type, setMessage, setType }}
       >
@@ -19,7 +24,7 @@ const Layout = ({ children }) => {
         <div className=" bg-[#080d13] min-h-[92vh]">{children}</div>
         <Notification message={message} type={type} />
       </NotificationContext.Provider>
-    </AuthContextProvider>
+    </AuthContext.Provider>
   );
 };
 export default Layout;

@@ -1,6 +1,6 @@
-import dbConnect from "../../../utils/dbConnect";
-import Complaint from "../../../models/complaint";
-import { allowedCategories } from "../../../utils/constants";
+import dbConnect from "../../../../utils/dbConnect";
+import Complaint from "../../../../models/complaint";
+import { allowedCategories } from "../../../../utils/constants";
 
 export default async function handler(req, res) {
   const category = req.query.category;
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   await dbConnect();
   if (req.method === "GET") {
     try {
-      const complaints = await Complaint.find({ category });
+      const complaints = await Complaint.find({ category }).lean();
       res
         .status(200)
         .json({ success: true, data: JSON.parse(JSON.stringify(complaints)) });

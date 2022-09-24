@@ -1,11 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ComplaintGrid from "../../components/ComplaintGrid";
 import ComplaintModal from "../../components/ComplaintModal";
 import { allowedCategories } from "../../utils/constants";
 import { toTitleCase } from "../../utils/calculations";
+import { useRouter } from "next/router";
 
-const FilteredPage = ({ category, complaints }) => {
+const FilteredPage = () => {
   const [cur, setCur] = useState({});
+  const [complaints, setComplaints] = useState([]);
+  let category = useRouter().query.category;
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      const res = await fetch(`/api/complaints/${category}`);
+      const data = (await res.json()).data;
+      setComplaints(data);
+    };
+    if (category) {
+      if (!allowedCategories.includes(category)) {
+        return {
+          notFound: true,
+        };
+      }
+
+      fetchComplaints();
+    }
+  }, [category]);
+
+  if (!complaints.length) {
+    return "Loading";
+  }
 
   return (
     <div>
@@ -23,32 +47,6 @@ const FilteredPage = ({ category, complaints }) => {
       )}
     </div>
   );
-};
-
-export const getServerSideProps = async (context) => {
-  const SERVER_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const { category } = context.query;
-  if (!allowedCategories.includes(category)) {
-    return {
-      notFound: true,
-    };
-  }
-
-  try {
-    const res = await fetch(`${SERVER_URL}/api/complaints/${category}`);
-    const data = await res.json();
-    return {
-      props: {
-        category,
-        complaints: data.data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      notFound: true,
-    };
-  }
 };
 
 export default FilteredPage;
