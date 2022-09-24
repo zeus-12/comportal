@@ -25,3 +25,16 @@ Q) what are the diff categories of complaints??
 - proff related
 - other ?? -- workers?
 - non hostel electricity, bus(and other transport), staff
+
+<!-- for images -->
+
+` async function checkImage(url){
+
+     const res = await fetch(url);
+     const buff = await res.blob();
+
+     return buff.type.startsWith('image/')
+
+} `
+
+- nested comments/ likes/dislikes
