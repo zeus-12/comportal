@@ -1,14 +1,11 @@
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@mantine/core";
 import ComplaintGrid from "../components/ComplaintGrid";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ComplaintModal from "../components/ComplaintModal";
 import Router from "next/router";
-// import { unstable_getServerSession } from "next-auth";
-// import { authOptions } from "./api/auth/[...nextauth]";
 
 const User = () => {
-  // const name = "hi";
   const { data } = useSession();
   const name = data?.user.name;
 
@@ -57,30 +54,5 @@ const User = () => {
     </>
   );
 };
-
-// export const getServerSideProps = async (context) => {
-//   const session = await unstable_getServerSession(
-//     context.req,
-//     context.res,
-//     authOptions
-//   );
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/api/auth/signin",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   const name = session.user.name;
-
-//   return {
-//     props: {
-//       name,
-//     },
-//   };
-// };
 
 export default User;
