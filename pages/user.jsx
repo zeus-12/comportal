@@ -4,7 +4,6 @@ import ComplaintGrid from "../components/ComplaintGrid";
 import { useContext, useEffect, useState } from "react";
 import ComplaintModal from "../components/ComplaintModal";
 import Router from "next/router";
-// import { AuthContext } from "../utils/context";
 // import { unstable_getServerSession } from "next-auth";
 // import { authOptions } from "./api/auth/[...nextauth]";
 
@@ -13,7 +12,6 @@ const User = () => {
   const { data } = useSession();
   const name = data?.user.name;
 
-  // const data = useContext(AuthContext);
   const [complaints, setComplaints] = useState([]);
 
   useEffect(() => {

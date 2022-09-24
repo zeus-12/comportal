@@ -10,6 +10,7 @@
 - add a loading screen
 - use middleware for hiding restricted pages and routes
 - add skeleton for loading
+- use useSWR or react-query
 
 Q) diff hostels how to display
 Q) what are the diff categories of complaints??
