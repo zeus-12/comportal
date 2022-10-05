@@ -4,6 +4,7 @@ import ComplaintModal from "../../components/ComplaintModal";
 import { allowedCategories } from "../../utils/constants";
 import { toTitleCase } from "../../utils/calculations";
 import { useRouter } from "next/router";
+import { Loader } from "@mantine/core";
 
 const FilteredPage = () => {
   const [cur, setCur] = useState({});
@@ -28,7 +29,11 @@ const FilteredPage = () => {
   }, [category]);
 
   if (!complaints.length) {
-    return "Loading";
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader variant="dots" />;
+      </div>
+    );
   }
 
   return (

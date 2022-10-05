@@ -1,5 +1,5 @@
 import { signOut, useSession } from "next-auth/react";
-import { Button } from "@mantine/core";
+import { Button, Loader } from "@mantine/core";
 import ComplaintGrid from "../components/ComplaintGrid";
 import { useEffect, useState } from "react";
 import ComplaintModal from "../components/ComplaintModal";
@@ -29,7 +29,7 @@ const User = () => {
   const [cur, setCur] = useState({});
 
   if (!complaints) {
-    return "Loading";
+    return <Loader variant="dots" />;
   }
 
   return (
