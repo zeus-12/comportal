@@ -30,7 +30,7 @@ const FilteredPage = () => {
 
   if (!complaints.length) {
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="h-[92vh] flex items-center justify-center">
         <Loader size="xl" variant="dots" />
       </div>
     );
