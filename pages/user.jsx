@@ -29,7 +29,7 @@ const User = () => {
   const [cur, setCur] = useState({});
 
   if (!complaints) {
-    return <Loader variant="dots" />;
+    return <Loader size="xl" variant="dots" />;
   }
 
   return (
